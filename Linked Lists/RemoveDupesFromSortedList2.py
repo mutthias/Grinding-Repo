@@ -7,25 +7,20 @@
 # Idea: iterate, for each node
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        freq_map = {}
+        dummy = ListNode(0, head)
         cur = head
+        prev = dummy
 
-        while cur:
-            freq_map[cur.val] = freq_map.get(cur.val, 0) + 1
+        while cur and cur.next:
+            if cur.val == cur.next.val:
+                while cur.next and cur.val == cur.next.val:
+                    cur = cur.next
+                prev.next = cur.next
+            else:
+                prev = prev.next
             cur = cur.next
-        
-        new_list = ListNode(0, None)
-        cur = head
-        cur_new = new_list
-
-        while cur:
-            if freq_map[cur.val] == 1:
-                newNode = ListNode(cur.val, None)
-                cur_new.next = newNode
-                cur_new = cur_new.next
-            cur = cur.next
-        
-        return new_list.next
+    
+        return dummy.next
                 
 
         
