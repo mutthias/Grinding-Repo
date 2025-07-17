@@ -9,5 +9,5 @@ class Solution:
 
         
         valid_codes = sorted(valid_codes, key = lambda x: (x[1], x[0]))
-    
+      
         return [code[0] for code in valid_codes]
